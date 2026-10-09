@@ -1,0 +1,14 @@
+{
+  "compilerOptions": {
+    "composite": true,
+    "skipLibCheck": true,
+    "module": "ESNext",
+    "moduleResolution": "bundler",
+    "allowSyntheticDefaultImports": true,
+    "strict": true,
+    "types": ["node"],
+    // composite требует emit, поэтому .d.ts уходят из корня в кеш
+    "outDir": "node_modules/.cache/ts-node-config"
+  },
+  "include": ["vite.config.ts", "tailwind.config.ts", "playwright.config.ts", "vitest.config.ts"]
+}

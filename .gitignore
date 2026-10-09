@@ -1,0 +1,48 @@
+# Зависимости
+node_modules/
+
+# Сборка
+dist/
+dist-ssr/
+build/
+coverage/
+
+# Логи и кэш
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+.vite/
+.cache/
+.eslintcache
+
+# Окружение (секреты здесь хранить нельзя)
+.env
+.env.local
+.env.*.local
+
+# Редакторы и системы
+.vscode/*
+!.vscode/extensions.json
+.idea/
+*.swp
+.DS_Store
+Thumbs.db
+
+# Playwright
+playwright-report/
+test-results/
+blob-report/
+.playwright/
+
+# TypeScript
+*.tsbuildinfo
+
+# Config files emitted by `tsc -b` (build artifacts, sources are *.config.ts)
+/vite.config.js
+/vitest.config.js
+/tailwind.config.js
+
+# ����������, ��������������� tsc -b � �����
+/*.d.ts

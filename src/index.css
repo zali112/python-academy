@@ -1,0 +1,261 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ============================================================
+   Дизайн-система Python Academy
+   Светлая и тёмная темы переключаются классом .dark на <html>
+   ============================================================ */
+
+:root {
+  --background: 152 25% 98%;
+  --foreground: 162 35% 9%;
+
+  --card: 0 0% 100%;
+  --card-foreground: 162 35% 9%;
+  --popover: 0 0% 100%;
+  --popover-foreground: 162 35% 9%;
+
+  --primary: 163 75% 26%;
+  --primary-foreground: 150 20% 98%;
+  --secondary: 150 16% 94%;
+  --secondary-foreground: 162 30% 14%;
+  --muted: 150 16% 95%;
+  --muted-foreground: 162 8% 42%;
+  --accent: 163 55% 92%;
+  --accent-foreground: 163 75% 18%;
+
+  --destructive: 0 72% 50%;
+  --destructive-foreground: 0 0% 100%;
+  --success: 142 62% 34%;
+  --success-foreground: 0 0% 100%;
+  --warning: 35 92% 44%;
+  --warning-foreground: 30 60% 8%;
+  --info: 210 88% 46%;
+  --info-foreground: 0 0% 100%;
+
+  --border: 150 12% 88%;
+  --input: 150 12% 85%;
+  --ring: 163 75% 32%;
+
+  --sidebar: 152 22% 96%;
+  --sidebar-foreground: 162 30% 16%;
+  --sidebar-border: 150 12% 88%;
+
+  --radius: 0.75rem;
+}
+
+.dark {
+  --background: 168 28% 7%;
+  --foreground: 152 18% 95%;
+
+  --card: 168 24% 10%;
+  --card-foreground: 152 18% 95%;
+  --popover: 168 24% 11%;
+  --popover-foreground: 152 18% 95%;
+
+  --primary: 158 65% 46%;
+  --primary-foreground: 168 30% 7%;
+  --secondary: 168 18% 16%;
+  --secondary-foreground: 152 18% 92%;
+  --muted: 168 18% 15%;
+  --muted-foreground: 158 10% 65%;
+  --accent: 168 30% 18%;
+  --accent-foreground: 158 60% 78%;
+
+  --destructive: 0 70% 58%;
+  --destructive-foreground: 0 0% 100%;
+  --success: 142 55% 50%;
+  --success-foreground: 168 30% 7%;
+  --warning: 38 92% 55%;
+  --warning-foreground: 30 60% 8%;
+  --info: 210 85% 62%;
+  --info-foreground: 168 30% 7%;
+
+  --border: 168 18% 20%;
+  --input: 168 18% 25%;
+  --ring: 158 65% 50%;
+
+  --sidebar: 168 26% 9%;
+  --sidebar-foreground: 152 18% 90%;
+  --sidebar-border: 168 18% 20%;
+}
+
+@layer base {
+  * {
+    border-color: hsl(var(--border));
+  }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+    text-rendering: optimizeLegibility;
+    overflow-x: hidden;
+  }
+
+  ::selection {
+    background: hsl(var(--primary) / 0.25);
+  }
+
+  /* Видимый фокус для клавиатурной навигации (доступность) */
+  :focus-visible {
+    outline: 2px solid hsl(var(--ring));
+    outline-offset: 2px;
+    border-radius: 4px;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    @apply font-semibold tracking-tight;
+    text-wrap: balance;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+
+  ::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: hsl(var(--muted-foreground) / 0.3);
+    border-radius: 999px;
+    border: 2px solid transparent;
+    background-clip: content-box;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: hsl(var(--muted-foreground) / 0.5);
+    background-clip: content-box;
+  }
+}
+
+@layer components {
+  .container-app {
+    @apply mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8;
+  }
+
+  .surface {
+    @apply rounded-xl border border-border bg-card text-card-foreground;
+  }
+
+  .surface-muted {
+    @apply rounded-xl border border-border bg-muted/60;
+  }
+
+  /* Единый интерактивный стиль карточек */
+  .interactive-card {
+    @apply transition-all duration-200 ease-out;
+  }
+  .interactive-card:hover {
+    @apply -translate-y-0.5 shadow-lg shadow-black/5 dark:shadow-black/30;
+    border-color: hsl(var(--ring) / 0.35);
+  }
+  .interactive-card:active {
+    @apply translate-y-0;
+  }
+
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  /* Подсветка найденного текста в поиске */
+  mark,
+  .highlight {
+    background: hsl(var(--warning) / 0.35);
+    color: inherit;
+    border-radius: 3px;
+    padding: 0 2px;
+  }
+
+  /* Тело текста уроков и справочников */
+  .prose-lesson p {
+    @apply mb-4 leading-relaxed text-[15px] text-foreground/85 sm:text-base;
+  }
+  .prose-lesson ul,
+  .prose-lesson ol {
+    @apply mb-4 ml-5 space-y-2 text-[15px] leading-relaxed text-foreground/85 sm:text-base;
+  }
+  .prose-lesson ul {
+    list-style: disc;
+  }
+  .prose-lesson ol {
+    list-style: decimal;
+  }
+  .prose-lesson code {
+    @apply rounded bg-muted px-1.5 py-0.5 font-mono text-[0.9em] text-accent-foreground;
+  }
+}
+
+/* ============================================================
+   Подсветка синтаксиса Python (собственная токенизация)
+   ============================================================ */
+.tok-kw {
+  color: #c678dd;
+  font-weight: 600;
+}
+.tok-str {
+  color: #98c379;
+}
+.tok-com {
+  color: #7f848e;
+  font-style: italic;
+}
+.tok-num {
+  color: #d19a66;
+}
+.tok-fn {
+  color: #61afef;
+}
+.tok-builtin {
+  color: #56b6c2;
+}
+.tok-op {
+  color: #56b6c2;
+}
+.tok-self {
+  color: #e06c75;
+  font-style: italic;
+}
+.tok-decorator {
+  color: #e5c07b;
+}
+.dark .tok-str {
+  color: #98c379;
+}
+
+/* Скелетон загрузки */
+.skeleton {
+  position: relative;
+  overflow: hidden;
+  background: hsl(var(--muted));
+  border-radius: 8px;
+}
+.skeleton::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  transform: translateX(-100%);
+  background: linear-gradient(90deg, transparent, hsl(var(--foreground) / 0.07), transparent);
+  animation: shimmer 1.6s infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
